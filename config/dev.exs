@@ -35,9 +35,8 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :chatter, Chatter.Repo,
-  adapter: Ecto.Adapters.Postgres,
-  username: "postgres",
-  password: "postgres",
+  adapter: Ecto.Adapters.MySQL,
+  username: "root",
   database: "chatter_dev",
   hostname: "localhost",
   pool_size: 10
