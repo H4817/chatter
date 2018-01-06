@@ -1,4 +1,7 @@
 defmodule Chatter do
+  @moduledoc """
+  Widget for chatting
+  """
   use Application
 
   # See http://elixir-lang.org/docs/stable/elixir/Application.html
