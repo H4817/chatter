@@ -12,6 +12,7 @@ defmodule Chatter.RegistrationController do
     case Chatter.Registration.create(changeset, Chatter.Repo) do
       {:ok, changeset} ->
         conn
+        |> put_session(:current_user, changeset.id)
         |> put_flash(:info, "Your account was created")
         |> redirect(to: "/")
       {:error, changeset} ->

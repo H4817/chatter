@@ -5,8 +5,8 @@ defmodule Chatter.SessionController do
     render conn, "new.html"
   end
 
-  def create(conn, %{"session" => session_params}) do
-    case Chatter.Session.login(session_params, Chatter.Repo) do
+  def create(conn, session) do
+    case Chatter.Session.login(session, Chatter.Repo) do
       {:ok, user} ->
         conn
         |> put_session(:current_user, user.id)
@@ -18,4 +18,12 @@ defmodule Chatter.SessionController do
         |> render("new.html")
     end
   end
+
+  def delete(conn, _) do
+    conn
+    |> delete_session(:current_user)
+    |> put_flash(:info, "Logged out")
+    |> redirect(to: "/")
+  end
+
 end

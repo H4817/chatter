@@ -2,7 +2,7 @@ defmodule Chatter.Session do
   alias Chatter.User
 
   def login(params, repo) do
-    user = repo.get_by(User, name: String.downcase(params["name"]))
+    user = repo.get_by(User, name: params["name"])
     case authenticate(user, params["password"]) do
       true -> {:ok, user}
       _    -> :error
