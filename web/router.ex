@@ -20,6 +20,8 @@ defmodule Chatter.Router do
 
     resources "/users", UserController
     resources "/registrations", RegistrationController, only: [:new, :create]
+    resources "/room", RoomController
+    resources "/message", MessageController
     get    "/login",  SessionController, :new
     post   "/login",  SessionController, :create
     delete "/logout", SessionController, :delete

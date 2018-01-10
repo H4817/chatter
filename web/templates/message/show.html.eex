@@ -1,0 +1,28 @@
+<h2>Show message</h2>
+
+<ul>
+
+  <li>
+    <strong>Room:</strong>
+    <%= @message.room_id %>
+  </li>
+
+  <li>
+    <strong>From user:</strong>
+    <%= @message.from_user %>
+  </li>
+
+  <li>
+    <strong>To user:</strong>
+    <%= @message.to_user %>
+  </li>
+
+  <li>
+    <strong>Message:</strong>
+    <%= @message.message %>
+  </li>
+
+</ul>
+
+<%= link "Edit", to: message_path(@conn, :edit, @message) %>
+<%= link "Back", to: message_path(@conn, :index) %>
