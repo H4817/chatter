@@ -26,6 +26,10 @@ defmodule Chatter.MessageController do
     end
   end
 
+  def view(conn) do
+    render(conn, "show.html")
+  end
+
   def show(conn, %{"id" => id}) do
     message = Repo.get!(Message, id)
     render(conn, "show.html", message: message)
