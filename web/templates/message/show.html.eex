@@ -9,12 +9,12 @@
 
   <li>
     <strong>From user:</strong>
-    <%= @message.from_user %>
+    <%= @message.from_user_id %>
   </li>
 
   <li>
     <strong>To user:</strong>
-    <%= @message.to_user %>
+    <%= @message.to_user_id %>
   </li>
 
   <li>

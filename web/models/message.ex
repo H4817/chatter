@@ -4,8 +4,8 @@ defmodule Chatter.Message do
   schema "message" do
     field :message, :string
     belongs_to :room, Chatter.Room
-    belongs_to :from_user, Chatter.FromUser
-    belongs_to :to_user, Chatter.ToUser
+    belongs_to :from_user, Chatter.User
+    belongs_to :to_user, Chatter.User
 
     timestamps()
   end

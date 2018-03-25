@@ -35,7 +35,7 @@ config :phoenix, :stacktrace_depth, 20
 
 # Configure your database
 config :chatter, Chatter.Repo,
-  adapter: Ecto.Adapters.MySQL,
+  adapter: EctoMnesia.Adapter,
   username: "root",
   database: "chatter_dev",
   hostname: "localhost",

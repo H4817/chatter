@@ -12,81 +12,12 @@
   </div>
 
   <div class="form-group">
+    <%= label f, :to_user_id, class: "control-label" %>
+    <%= textarea f, :to_user_id, class: "form-control" %>
+    <%= error_tag f, :to_user_id %>
+  </div>
+
+  <div class="form-group">
     <%= submit "Submit", class: "btn btn-primary" %>
   </div>
 <% end %>
-
-<!-- Container, Row, and Column used for illustration purposes -->
-<div class="container">
-  <div class="row">
-    <div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-8 col-xs-offset-2">
-
-      <!-- Fluid width widget -->        
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h3 class="panel-title">
-            <span class="glyphicon glyphicon-comment"></span> 
-            Recent Comments
-          </h3>
-        </div>
-        <div class="panel-body">
-          <ul class="media-list">
-            <li class="media">
-              <div class="media-left">
-                <img src="http://placehold.it/60x60" class="img-circle">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  Mauris Eu
-                  <br>
-                  <small>
-                    commented on <a href="#">Post Title</a>
-                  </small>
-                </h4>
-                <p>
-                Vivamus pulvinar mauris eu placerat blandit. In euismod tellus vel ex vestibulum congue...
-                </p>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-left">
-                <img src="http://placehold.it/60x60" class="img-circle">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  Aenean Consect
-                  <br>
-                  <small>
-                    commented on <a href="#">Post Title</a>
-                  </small>
-                </h4>
-                <p>
-                Curabitur vel malesuada tortor, sit amet ultricies mauris. Aenean consectetur ultricies luctus.
-                </p>
-              </div>
-            </li>
-            <li class="media">
-              <div class="media-left">
-                <img src="http://placehold.it/60x60" class="img-circle">
-              </div>
-              <div class="media-body">
-                <h4 class="media-heading">
-                  Praesent Tinci
-                  <br>
-                  <small>
-                    commented on <a href="#">Post Title</a>
-                  </small>
-                </h4>
-                <p>
-                Sed convallis dignissim magna et dignissim. Praesent tincidunt sapien eu gravida dignissim.
-                </p>
-              </div>
-            </li>
-          </ul>
-          <a href="#" class="btn btn-default btn-block">More Events »</a>
-        </div>
-      </div>
-      <!-- End fluid width widget --> 
-    </div>
-  </div>
-</div>

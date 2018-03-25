@@ -2,9 +2,11 @@ defmodule Chatter.MessageController do
   use Chatter.Web, :controller
 
   alias Chatter.Message
+  alias Chatter.User
+  alias Chatter.Session
 
   def index(conn, _params) do
-    message = Repo.all(Message)
+    message = IO.inspect(Repo.all(Message) |> Repo.preload([:room, :from_user, :to_user]))
     render(conn, "index.html", message: message)
   end
 
@@ -14,15 +16,31 @@ defmodule Chatter.MessageController do
   end
 
   def create(conn, %{"message" => message_params}) do
+    current_user = Session.current_user(conn)
+    case current_user do
+      nil ->  conn
+              |> put_flash(:error, "You should authorize first.")
+              |> redirect(to: message_path(conn, :index))
+      _ ->
     changeset = Message.changeset(%Message{}, message_params)
 
-    case Repo.insert(changeset) do
-      {:ok, _message} ->
-        conn
-        |> put_flash(:info, "Message created successfully.")
-        |> redirect(to: message_path(conn, :index))
-      {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+    to_user_id = if (message_params["to_user_id"] != ""), do:
+     message_params["to_user_id"] |> String.to_integer, else:
+     message_params["to_user_id"]
+
+    changeset_with_users = if is_integer(to_user_id), do:
+      Ecto.Changeset.put_assoc(changeset, :from_user, current_user)
+      |> Ecto.Changeset.put_assoc(:to_user, Repo.get(User, to_user_id)), else:
+      Ecto.Changeset.put_assoc(changeset, :from_user, current_user)
+    
+      case Repo.insert(changeset_with_users) do
+        {:ok, _message} ->
+          conn
+          |> put_flash(:info, "Message created successfully.")
+          |> redirect(to: message_path(conn, :index))
+        {:error, changeset} ->
+          render(conn, "new.html", changeset: changeset)
+      end
     end
   end
 

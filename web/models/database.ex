@@ -3,7 +3,7 @@ use Amnesia
 
 # defines a database called Database, it's basically a defmodule with
 # some additional magic
-defdatabase chatter_dev do
+defdatabase Database do
   # this is just a forward declaration of the table, otherwise you'd have
   # to fully scope User.read in Message functions
   deftable User

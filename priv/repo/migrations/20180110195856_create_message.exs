@@ -4,6 +4,8 @@ defmodule Chatter.Repo.Migrations.CreateMessage do
   def change do
     create table(:message) do
       add :message, :string
+      add :from_user_id, :integer
+      add :to_user_id, :integer
       add :room_id, references(:room, on_delete: :nothing)
       add :from_user, references(:user, on_delete: :nothing)
       add :to_user, references(:user, on_delete: :nothing)
