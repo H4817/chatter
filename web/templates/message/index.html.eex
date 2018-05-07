@@ -6,9 +6,16 @@
       <!-- Fluid width widget -->        
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h3 class="panel-title">
-            Recent Comments
-          </h3>
+          <ul class="panel-title nav nav-pills">
+            <li style="padding: 10px 0px">  Recent Comments </li>
+            <%= if logged_in?(@conn) do %>
+              <li><%= link "Logout(" <> current_user(@conn).name <> ")", to: session_path(@conn, :delete), method: :delete %></li>
+            <% else %>
+              <li><%= link "Login",    to: "/login" %></li>
+              <li><%= link "Register", to: registration_path(@conn, :new) %></li>
+              
+            <% end %>
+          </ul>
         </div>
         <div class="panel-body">
           <ul class="media-list" style="height: 300px; overflow: scroll; overflow-x:hidden; overflow-y:auto;">
@@ -19,7 +26,7 @@
                 </div>
                 <div class="media-body">
                   <h4 class="media-heading">
-                    Test 14
+                    <%= message.from_user.name %>
                     <br>
                     <small>
                       commented on <a href="#">Post Title</a>
@@ -32,7 +39,11 @@
               </li>
             <% end %>
           </ul>
-          <a href="#" class="btn btn-default btn-block">More Events »</a>
+      <%= form_for @changeset, message_path(@conn, :create), fn f -> %>
+        <div class="form-group">
+          <%= textarea f, :to_user_id, class: "form-control", style: "resize: none;" %>
+        </div>
+      <% end %>
         </div>
       </div>
       <!-- End fluid width widget --> 

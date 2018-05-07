@@ -11,7 +11,7 @@ defmodule Chatter.SessionController do
         conn
         |> put_session(:current_user, user.id)
         |> put_flash(:info, "Logged in")
-        |> redirect(to: "/")
+        |> redirect(to: "/message")
       :error ->
         conn
         |> put_flash(:info, "Wrong username or password")
@@ -23,7 +23,7 @@ defmodule Chatter.SessionController do
     conn
     |> delete_session(:current_user)
     |> put_flash(:info, "Logged out")
-    |> redirect(to: "/")
+    |> redirect(to: "/message")
   end
 
 end

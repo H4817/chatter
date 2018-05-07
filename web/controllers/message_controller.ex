@@ -6,8 +6,9 @@ defmodule Chatter.MessageController do
   alias Chatter.Session
 
   def index(conn, _params) do
+    changeset = Message.changeset(%Message{})
     message = IO.inspect(Repo.all(Message) |> Repo.preload([:room, :from_user, :to_user]))
-    render(conn, "index.html", message: message)
+    render(conn, "index.html", message: message, changeset: changeset)
   end
 
   def new(conn, _params) do

@@ -14,7 +14,7 @@ defmodule Chatter.RegistrationController do
         conn
         |> put_session(:current_user, changeset.id)
         |> put_flash(:info, "Your account was created")
-        |> redirect(to: "/")
+        |> redirect(to: "/message")
       {:error, changeset} ->
         conn
         |> put_flash(:info, "This name already exists")
